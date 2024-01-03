@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Users</h1>
+    <table>
+        <th>
+            <tr>
+                <td>Id</td>
+                <td>Full Name</td>
+                <td>Email</td>
+                <td>Created at</td>
+                <td>Actions</td>
+            </tr>
+        </th>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.pk }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.created_at }}</td>
+                    <td><a href="{% url 'show_user' user.pk %}">Show</a> <a href="{% url 'edit_user' user.pk %}">Edit</a> <a onclick="return confirm('Are you sure you want to delete this item?');" href="{% url 'delete_user' user.pk %}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{% url 'create_user' %}">Create new user</a>
+</body>
+</html>
